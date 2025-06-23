@@ -1,0 +1,35 @@
+class BankAccount:
+    def __init__(self,account_number,balance = 0):
+        self.account_number = account_number
+        self.balance = balance
+    
+    def deposit(self,amount):
+        if amount > 0:
+            self.balance += amount
+        else:
+            print("Сума для внесення повинна бути додатньою!")
+            
+    def withdraw(self,amount):
+        if amount > self.balance:
+            print(f"Недостатньо коштів на рахунку для зняття! На Вашому рахунку {self.balance}!")
+        elif amount <= 0:
+            print("Сума для зняття повинна бути додатньою!")
+        else:
+            self.balance -= amount
+    
+    def get_balance(self):
+        return f"${self.balance}"
+        
+    def __str__(self):
+        return f"Account №{self.account_number}: ${self.balance:.2f}"
+        
+account = BankAccount("12546",100);
+print(account)
+
+account.deposit(65)
+print("Сума після внесення:",account.get_balance())
+
+account.withdraw(55)
+print("Сума після зняття:",account.get_balance())
+
+account.withdraw(120)
